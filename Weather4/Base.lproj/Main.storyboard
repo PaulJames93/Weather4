@@ -1,24 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Weather View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="WeatherViewController" customModule="Weather4" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwz-zW-M0H">
+                                <rect key="frame" x="0.0" y="44" width="414" height="769"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mJm-wr-1z9">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="769"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="mJm-wr-1z9" firstAttribute="leading" secondItem="LOg-Wc-uZ4" secondAttribute="leading" id="RWl-Ts-82r"/>
+                                    <constraint firstItem="mJm-wr-1z9" firstAttribute="height" secondItem="Ofs-8e-qXv" secondAttribute="height" id="VkR-gp-Ysl"/>
+                                    <constraint firstItem="mJm-wr-1z9" firstAttribute="trailing" secondItem="LOg-Wc-uZ4" secondAttribute="trailing" id="dXN-Tg-DFk"/>
+                                    <constraint firstItem="mJm-wr-1z9" firstAttribute="top" secondItem="LOg-Wc-uZ4" secondAttribute="top" id="eB4-km-DK6"/>
+                                    <constraint firstItem="mJm-wr-1z9" firstAttribute="bottom" secondItem="LOg-Wc-uZ4" secondAttribute="bottom" id="fWr-XU-yjG"/>
+                                    <constraint firstItem="mJm-wr-1z9" firstAttribute="width" secondItem="Ofs-8e-qXv" secondAttribute="width" id="ysL-Q1-8A6"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="LOg-Wc-uZ4"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Ofs-8e-qXv"/>
+                            </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vj2-uI-ky5">
+                                <rect key="frame" x="0.0" y="813" width="414" height="49"/>
+                                <items>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="sdg-Eo-Hfh"/>
+                                    <barButtonItem style="plain" id="8KG-fx-K1M">
+                                        <pageControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="sD0-nh-g96">
+                                            <rect key="frame" x="145.5" y="13" width="123" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </pageControl>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="8xh-oO-SvN"/>
+                                    <barButtonItem systemItem="add" id="8Pb-fA-bTl">
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </barButtonItem>
+                                </items>
+                                <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </toolbar>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="vj2-uI-ky5" firstAttribute="top" secondItem="zwz-zW-M0H" secondAttribute="bottom" id="2yc-Oo-hH6"/>
+                            <constraint firstItem="zwz-zW-M0H" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="8k9-Mf-oay"/>
+                            <constraint firstItem="vj2-uI-ky5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="OMk-PA-u4r"/>
+                            <constraint firstItem="zwz-zW-M0H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="WDc-lv-H4C"/>
+                            <constraint firstItem="zwz-zW-M0H" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Yop-Ry-Ibk"/>
+                            <constraint firstItem="vj2-uI-ky5" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="dgl-uO-vUj"/>
+                            <constraint firstItem="vj2-uI-ky5" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="ywr-LR-dIk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="pageControl" destination="sD0-nh-g96" id="iZS-4E-cX9"/>
+                        <outlet property="scrollView" destination="zwz-zW-M0H" id="WVs-Tl-gE6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="189.85507246376812" y="49.553571428571423"/>
         </scene>
     </scenes>
 </document>
