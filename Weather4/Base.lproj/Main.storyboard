@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -71,7 +70,7 @@
                     </view>
                     <connections>
                         <outlet property="pageControl" destination="sD0-nh-g96" id="iZS-4E-cX9"/>
-                        <outlet property="scrollView" destination="zwz-zW-M0H" id="WVs-Tl-gE6"/>
+                        <outlet property="weatherScrollView" destination="zwz-zW-M0H" id="WVs-Tl-gE6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -85,7 +84,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Nm0-wr-Hz6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="NsM-GJ-b0B">
                             <rect key="frame" x="0.0" y="136" width="414" height="55"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -98,7 +97,7 @@
                                     </constraints>
                                     <state key="normal" title="Add"/>
                                     <connections>
-                                        <segue destination="lah-kQ-DX7" kind="show" id="1Rw-gO-qfJ"/>
+                                        <segue destination="lah-kQ-DX7" kind="show" identifier="chooseLocationSegue" id="1Rw-gO-qfJ"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -109,13 +108,42 @@
                             </constraints>
                         </view>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="bbg-x2-0tx">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="bbg-x2-0tx" customClass="MainWeatherTableViewCell" customModule="Weather4" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bbg-x2-0tx" id="krh-nx-gar">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="80"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O1T-mH-9fP">
+                                            <rect key="frame" x="20" y="29" width="326" height="22"/>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="19"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100FC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pto-30-51f">
+                                            <rect key="frame" x="354" y="29" width="60" height="22"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="60" id="nJd-wX-T4L"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="GillSans" family="Gill Sans" pointSize="19"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="pto-30-51f" secondAttribute="trailing" id="7ca-wq-fam"/>
+                                        <constraint firstItem="O1T-mH-9fP" firstAttribute="leading" secondItem="krh-nx-gar" secondAttribute="leadingMargin" id="Ec6-a7-2xl"/>
+                                        <constraint firstItem="pto-30-51f" firstAttribute="centerY" secondItem="krh-nx-gar" secondAttribute="centerY" id="Tbw-rf-4NL"/>
+                                        <constraint firstItem="O1T-mH-9fP" firstAttribute="centerY" secondItem="krh-nx-gar" secondAttribute="centerY" id="kjI-3t-mb0"/>
+                                        <constraint firstItem="pto-30-51f" firstAttribute="leading" secondItem="O1T-mH-9fP" secondAttribute="trailing" constant="8" id="weG-vb-Oat"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="cityLabel" destination="O1T-mH-9fP" id="kY0-Fz-p7k"/>
+                                    <outlet property="tempLabel" destination="pto-30-51f" id="xG6-Fq-OkP"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -191,9 +219,4 @@
             <point key="canvasLocation" x="1624.6376811594205" y="73.660714285714278"/>
         </scene>
     </scenes>
-    <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-    </resources>
 </document>

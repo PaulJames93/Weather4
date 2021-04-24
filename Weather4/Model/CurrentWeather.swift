@@ -122,6 +122,7 @@ class CurrentWeather {
         
         var LOCATIONAPI_URL: String!
         //если у нас не текущая локация, то ищем конкретный город
+        
         if !location.isCurrentLocation {
             LOCATIONAPI_URL = String(format: "https://api.weatherbit.io/v2.0/current?city=%@,%@&key=d6bf5dfc87c541958a268f3074b4b2d8", location.city, location.countryCode)
         } else {
