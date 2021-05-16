@@ -30,7 +30,6 @@ class WeatherViewController: UIViewController {
         super.viewDidLoad()
 
         locationManagerStart()
-      
     
     }
     
